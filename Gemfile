@@ -35,6 +35,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'factory_bot_rails'
   gem 'simplecov'
   gem 'rspec-rails', '~> 7.0.0'
