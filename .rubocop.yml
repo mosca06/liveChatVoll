@@ -256,6 +256,10 @@ Rails/FindById: # new in 2.7
   Enabled: true
 Rails/FreezeTime: # new in 2.16
   Enabled: true
+Rails/HttpStatus:
+  Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
 Rails/I18nLazyLookup: # new in 2.14
   Enabled: true
 Rails/I18nLocaleAssignment: # new in 2.11
