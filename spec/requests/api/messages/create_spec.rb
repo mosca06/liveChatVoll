@@ -5,15 +5,12 @@ require 'rails_helper'
 describe '/messages', type: :request do
   let(:user) { create(:user) }
   let(:second_user) { create(:user) }
-
-  before(:each) do
-    login_as(user, scope: :user)
-  end
+  let(:header) { http_basic_auth_header(user) }
 
   describe 'success' do
     it 'POST / creates a new message' do
       params = { message: { content: 'Uma mensagem', receiver_id: second_user.id } }
-      post '/api/v1/messages', params: params, as: :json
+      post '/api/v1/messages.json', params: params, headers: header
 
       parsed_response = response.parsed_body
 
@@ -28,7 +25,7 @@ describe '/messages', type: :request do
     it 'POST /messages fail to create a message' do
       params = { message: { content: '', receiver_id: second_user.id } }
 
-      post '/api/v1/messages', params: params, as: :json
+      post '/api/v1/messages.json', params: params, headers: header
 
       expect(response).to have_http_status(:unprocessable_entity)
       parsed_response = response.parsed_body

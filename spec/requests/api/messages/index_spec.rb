@@ -7,14 +7,11 @@ describe '/messages', type: :request do
   let(:second_user) { create(:user) }
   let!(:first_message) { create(:message, sender: user, receiver: second_user, content: 'Primeira mensagem') }
   let!(:second_message) { create(:message, sender: second_user, receiver: user, content: 'Segunda mensagem') }
-
-  before(:each) do
-    login_as(user, scope: :user)
-  end
+  let(:header) { http_basic_auth_header(user) }
 
   describe 'success' do
     it 'GET /messages returns all messages for the current user' do
-      get '/api/v1/messages', params: { format: :json }
+      get '/api/v1/messages.json', headers: header
       expect(response).to have_http_status(:ok)
 
       parsed_response = response.parsed_body
