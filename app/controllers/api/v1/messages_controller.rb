@@ -1,7 +1,7 @@
 module Api
   module V1
     class MessagesController < Api::V1::ApplicationController
-      before_action :authenticate_user!
+      before_action :authorize_user!
 
       def create
         @message = current_user.sent_messages.new(message_params)

@@ -33,6 +33,7 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  config.include Authentication
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
   Warden.test_mode!
