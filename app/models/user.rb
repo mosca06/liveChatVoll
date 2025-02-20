@@ -9,4 +9,8 @@ class User < ApplicationRecord
            foreign_key: 'receiver_id',
            inverse_of: :receiver,
            dependent: :nullify
+
+  def renew_session!
+    update!(session: SecureRandom.uuid, session_expires_at: Time.current + Session::DEFAULT_EXPIRATION)
+  end
 end

@@ -4,7 +4,7 @@ module Api
       before_action :authorize_user!
 
       def create
-        @message = current_user.sent_messages.new(message_params)
+        @message = fetch_user_by_session.sent_messages.new(message_params)
         if @message.save
           render :create, status: :created
         else
@@ -13,7 +13,7 @@ module Api
       end
 
       def index
-        @messages = Message.where('sender_id = :user_id OR receiver_id = :user_id', user_id: current_user.id)
+        @messages = Message.where('sender_id = :user_id OR receiver_id = :user_id', user_id: fetch_user_by_session.id)
       end
 
       private
