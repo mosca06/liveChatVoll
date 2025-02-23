@@ -2,14 +2,16 @@
   <div class="messages-container">
     <h2>Suas Mensagens</h2>
 
+    <button @click="novaMensagem" class="new-message-btn">Nova Mensagem</button>
+
     <div v-if="messages.length > 0">
       <table class="message-table">
         <thead>
           <tr>
             <th>ID</th>
             <th>Tipo</th>
-            <th>Destinatário</th>
             <th>Remetente</th>
+            <th>Destinatário</th>
             <th>Conteúdo</th>
           </tr>
         </thead>
@@ -17,8 +19,8 @@
           <tr v-for="message in messages" :key="message.id">
             <td>{{ message.id }}</td>
             <td>{{ message.type }}</td>
-            <td>{{ message.destinatario_id }}</td>
             <td>{{ message.remetente_id }}</td>
+            <td>{{ message.destinatario_id }}</td>
             <td>{{ message.conteudo }}</td>
           </tr>
         </tbody>
@@ -51,10 +53,14 @@ export default {
       }
 
       let data_response = await response.json();
-      this.messages = data_response.data
-
+      this.messages = data_response.data;
     } catch (error) {
       console.error("Erro ao carregar mensagens:", error);
+    }
+  },
+  methods: {
+    novaMensagem() {
+      this.$router.push('/nova-mensagem'); // Navega para a página de nova mensagem
     }
   }
 };
@@ -63,6 +69,7 @@ export default {
 <style scoped>
   .messages-container {
     padding: 20px;
+    max-width: 800px;
     margin: auto;
     background: white;
     border-radius: 8px;
@@ -74,13 +81,26 @@ export default {
     color: #333;
   }
 
+  .new-message-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+
+  .new-message-btn:hover {
+    background-color: #218838;
+  }
+
   .message-table {
     width: 100%;
     border-collapse: collapse;
   }
 
-  .message-table th,
-  .message-table td {
+  .message-table th, .message-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
