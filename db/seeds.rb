@@ -40,7 +40,7 @@ Message.create!(
 
 
 Message.create!(
-  sender_id:    user_1.id,
-  receiver_id:  user_3.id,
+  sender_id:    user_3.id,
+  receiver_id:  user_1.id,
   content:    "Terceira mensagem"
 )
