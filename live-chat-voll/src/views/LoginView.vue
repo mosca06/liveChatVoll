@@ -31,7 +31,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await fetch('http://127.0.0.1:3000/api/v1/login.json', {
+        const response = await fetch('http://localhost:3000/api/v1/login', {
           method: 'POST',
           credentials: "include",
           headers: {
@@ -79,12 +79,12 @@ export default {
 
 /* Estiliza o formulário */
 .login-form {
+  max-width: 400px;
   background: #fff;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
   text-align: center;
 }
 

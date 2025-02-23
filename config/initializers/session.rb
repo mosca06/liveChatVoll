@@ -1,3 +1,3 @@
 class Session
-  DEFAULT_EXPIRATION = 10.seconds
+  DEFAULT_EXPIRATION = 50000.seconds
 end
