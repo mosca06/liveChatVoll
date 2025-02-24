@@ -5,3 +5,9 @@ json.data @messages do |message|
   json.remetente_id       message.sender_id
   json.conteudo           message.content
 end
+
+json.pagination do
+  json.current_page  @messages.current_page
+  json.total_pages   @messages.total_pages
+  json.total_count   @messages.total_count
+end

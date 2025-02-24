@@ -13,7 +13,11 @@ module Api
       end
 
       def index
-        @messages = Message.where('sender_id = :user_id OR receiver_id = :user_id', user_id: fetch_user_by_session.id)
+        @messages = Message
+                    .where('sender_id = :user_id OR receiver_id = :user_id', user_id: fetch_user_by_session.id)
+                    .order(created_at: :desc)
+                    .page(params[:page])
+                    .per(params[:per_page] || 10)
       end
 
       private

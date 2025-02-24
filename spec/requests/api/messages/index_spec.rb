@@ -17,8 +17,9 @@ describe '/messages', type: :request do
       parsed_response = response.parsed_body
 
       expect(parsed_response['data'].size).to eq(2)
-      expect(parsed_response['data'].first['conteudo']).to eq('Primeira mensagem')
-      expect(parsed_response['data'].second['conteudo']).to eq('Segunda mensagem')
+      expect(parsed_response['data'].first['conteudo']).to eq('Segunda mensagem')
+      expect(parsed_response['data'].second['conteudo']).to eq('Primeira mensagem')
+      expect(parsed_response['pagination']['total_count']).to eq(2)
     end
   end
 end

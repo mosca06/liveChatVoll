@@ -1,5 +1,3 @@
-# spec/models/message_spec.rb
-
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
