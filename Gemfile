@@ -35,6 +35,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'kaminari'
   gem 'rack-cors'
   gem 'jwt'
   gem 'faker'
