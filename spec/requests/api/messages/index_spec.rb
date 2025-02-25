@@ -11,7 +11,7 @@ describe '/messages', type: :request do
 
   describe 'success' do
     it 'GET /messages returns all messages for the current user' do
-      get '/api/v1/messages.json', headers: header
+      get '/api/v1/messages', headers: header
       expect(response).to have_http_status(:ok)
 
       parsed_response = response.parsed_body

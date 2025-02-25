@@ -10,7 +10,7 @@ describe '/messages', type: :request do
   describe 'success' do
     it 'POST / creates a new message' do
       params = { message: { content: 'Uma mensagem', receiver_id: second_user.id } }
-      post '/api/v1/messages.json', params: params
+      post '/api/v1/messages', params: params
 
       parsed_response = response.parsed_body
 
@@ -19,13 +19,22 @@ describe '/messages', type: :request do
       expect(parsed_response['data']['remetente_id']).to eq(user.id)
       expect(parsed_response['data']['destinatario_id']).to eq(second_user.id)
     end
+
+    it 'POST / create new message without content with file' do
+      file = fixture_file_upload('spec/fixtures/test.jpeg', 'image/jpeg')
+      params = { message: { content: '', file: file, receiver_id: second_user.id } }
+      post '/api/v1/messages', params: params
+
+      expect(response).to have_http_status(:created)
+      expect(response.parsed_body['data']['file_url']).to be_present
+    end
   end
 
   describe 'failure' do
     it 'POST /messages fail to create a message' do
       params = { message: { content: '', receiver_id: second_user.id } }
 
-      post '/api/v1/messages.json', params: params
+      post '/api/v1/messages', params: params
 
       expect(response).to have_http_status(:unprocessable_entity)
       parsed_response = response.parsed_body
