@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::SessionsController, type: :controller do
-  include Authentication # Inclui o módulo de autenticação
+  include Authentication
 
   let(:user) do
     User.create!(email: 'x@example.com', password: '123456', session: 'abc123', session_expires_at: 1.hour.ago)

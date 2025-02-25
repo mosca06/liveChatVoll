@@ -20,6 +20,18 @@ module Api
                     .per(params[:per_page] || 10)
       end
 
+      def create_assync
+        fetch_user_by_session
+        message = @user.sent_messages.new(message_params)
+
+        if message.valid?
+          CreateMessageJob.perform_later(@user.id, message_params.to_h.stringify_keys)
+          render json: { message: 'Mensagem Adicionada a Fila' }, status: :accepted
+        else
+          render json: { errors: message.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def message_params

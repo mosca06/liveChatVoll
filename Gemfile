@@ -35,6 +35,9 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem 'sidekiq-status'
+  gem 'redis'
+  gem 'sidekiq'
   gem 'kaminari'
   gem 'rack-cors'
   gem 'jwt'
