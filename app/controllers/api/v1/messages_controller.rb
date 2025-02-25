@@ -32,6 +32,12 @@ module Api
         end
       end
 
+      def metrics
+        @total_messages = Message.count
+        @active_users = User.joins(:sent_messages).distinct.count
+        render :metrics, status: :ok
+      end
+
       private
 
       def message_params
