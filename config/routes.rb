@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   namespace :api do
-    namespace :v1 do
+    namespace :v1, defaults: { format: :json } do
       resources :messages, only: [:create, :index] do
         collection do
           post :create_assync
+          get :metrics
         end
       end
 
