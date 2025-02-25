@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   # root "posts#index"
   namespace :api do
     namespace :v1 do
-      resources :messages, only: [:create, :index]
+      resources :messages, only: [:create, :index] do
+        collection do
+          post :create_assync
+        end
+      end
 
       post 'login', to: 'sessions#create'
       delete 'logout', to: 'sessions#destroy'
