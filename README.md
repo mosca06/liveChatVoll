@@ -1,7 +1,8 @@
 # LiveChatVoll
 
 ## 🚀 Sobre o Projeto
-LiveChatVoll é um sistema de chat , permitindo o envio de mensagens e arquivos entre usuários.
+LiveChatVoll é um sistema de chat , permitindo o envio de mensagens e arquivos entre usuários.<br>
+Quadro de Tarefas: https://github.com/users/mosca06/projects/10
 
 ## 📌 Tecnologias Utilizadas
 
